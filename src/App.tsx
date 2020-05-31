@@ -1,25 +1,32 @@
 import React from 'react';
 import logo from './logo.svg';
-import './App.css';
+import { withStyles } from '@material-ui/core/styles';
+import { Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
+
+import Info from './containers/Info';
+import Top from './containers/Top';
+import Login from './containers/Login';
+
+import ResponsiveDrawer from './containers/ResponsiveDrawer';
+import Notification from './containers/Notification';
 
 function App() {
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Router>
+      <div className="App">
+        <Notification />
+        <ResponsiveDrawer>
+          <Switch>
+            <Route exact path="/" component={Top} />
+            <Route path="/login" component={Login} />
+            <Route path="/info" component={Info} />
+
+          </Switch>
+        </ResponsiveDrawer>
+      </div >
+    </Router >
   );
 }
 
